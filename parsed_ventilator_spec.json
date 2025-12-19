@@ -1,0 +1,169 @@
+{
+  "metadata": {
+    "document": "Synthetic_Ventilator_Model_1X_Spec.pdf",
+    "parsed_date": "2025-07-14T12:21:29.127095",
+    "parser_version": "1.0"
+  },
+  "characteristics": {
+    "Confidentiality": {
+      "requirements": [
+        {
+          "requirement": "Implement AES-256 encryption for all patient data",
+          "characteristic": "Confidentiality",
+          "info_state": "processing",
+          "measure_type": "technology",
+          "source": "technical_specification"
+        },
+        {
+          "requirement": "Deploy secure boot with firmware signature verification",
+          "characteristic": "Confidentiality",
+          "info_state": "processing",
+          "measure_type": "technology",
+          "source": "technical_specification"
+        }
+      ],
+      "gaps": [],
+      "count": 2
+    },
+    "Integrity": {
+      "requirements": [
+        {
+          "requirement": "Implement real-time parameter validation",
+          "characteristic": "Integrity",
+          "info_state": "processing",
+          "measure_type": "technology",
+          "source": "technical_specification"
+        },
+        {
+          "requirement": "Deploy secure boot with firmware signature verification",
+          "characteristic": "Integrity",
+          "info_state": "processing",
+          "measure_type": "technology",
+          "source": "technical_specification"
+        },
+        {
+          "requirement": "Perform automated calibration checks every 24 hours",
+          "characteristic": "Integrity",
+          "info_state": "processing",
+          "measure_type": "technology",
+          "source": "technical_specification"
+        },
+        {
+          "requirement": "Use blockchain for immutable calibration logging",
+          "characteristic": "Integrity",
+          "info_state": "storage",
+          "measure_type": "technology",
+          "source": "technical_specification"
+        },
+        {
+          "requirement": "Maintain tamper-proof audit logs for 7 years",
+          "characteristic": "Integrity",
+          "info_state": "storage",
+          "measure_type": "technology",
+          "source": "technical_specification"
+        }
+      ],
+      "gaps": [],
+      "count": 5
+    },
+    "Availability": {
+      "requirements": [
+        {
+          "requirement": "Achieve 99.999% uptime (less than 5.26 minutes downtime/year)",
+          "characteristic": "Availability",
+          "info_state": "processing",
+          "measure_type": "technology",
+          "source": "technical_specification"
+        },
+        {
+          "requirement": "Implement N+1 redundancy for all critical components",
+          "characteristic": "Availability",
+          "info_state": "processing",
+          "measure_type": "technology",
+          "source": "technical_specification"
+        },
+        {
+          "requirement": "Provide 8-hour battery backup minimum",
+          "characteristic": "Availability",
+          "info_state": "processing",
+          "measure_type": "technology",
+          "source": "technical_specification"
+        },
+        {
+          "requirement": "Enable emergency ventilation mode within 2 seconds",
+          "characteristic": "Availability",
+          "info_state": "processing",
+          "measure_type": "technology",
+          "source": "technical_specification"
+        },
+        {
+          "requirement": "Enable emergency override with dual authentication",
+          "characteristic": "Availability",
+          "info_state": "processing",
+          "measure_type": "technology",
+          "source": "technical_specification"
+        }
+      ],
+      "gaps": [],
+      "count": 5
+    },
+    "Human/Trust": {
+      "requirements": [
+        {
+          "requirement": "Implement intuitive UI with <3 clicks to any function",
+          "characteristic": "Human/Trust",
+          "info_state": "processing",
+          "measure_type": "technology",
+          "source": "technical_specification"
+        },
+        {
+          "requirement": "Reduce false positive alarms by minimum 70%",
+          "characteristic": "Human/Trust",
+          "info_state": "processing",
+          "measure_type": "technology",
+          "source": "technical_specification"
+        },
+        {
+          "requirement": "Provide built-in training mode with certification tracking",
+          "characteristic": "Human/Trust",
+          "info_state": "processing",
+          "measure_type": "training",
+          "source": "technical_specification"
+        }
+      ],
+      "gaps": [],
+      "count": 3
+    },
+    "Authentication": {
+      "requirements": [
+        {
+          "requirement": "Implement two-factor authentication for all users",
+          "characteristic": "Authentication",
+          "info_state": "processing",
+          "measure_type": "technology",
+          "source": "technical_specification"
+        },
+        {
+          "requirement": "Enable emergency override with dual authentication",
+          "characteristic": "Authentication",
+          "info_state": "processing",
+          "measure_type": "technology",
+          "source": "technical_specification"
+        }
+      ],
+      "gaps": [],
+      "count": 2
+    }
+  },
+  "summary": {
+    "total_requirements": 17,
+    "total_gaps": 0,
+    "coverage": {
+      "Confidentiality": "Limited",
+      "Integrity": "Good",
+      "Availability": "Good",
+      "Human/Trust": "Good",
+      "Authentication": "Limited"
+    }
+  }
+}

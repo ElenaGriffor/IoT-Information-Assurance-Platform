@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dot:*)",
+      "Bash(brew list:*)",
+      "Bash(python3:*)",
+      "Bash(brew install:*)",
+      "Bash(pip3 install:*)",
+      "Bash(find:*)"
+    ],
+    "deny": []
+  }
+}

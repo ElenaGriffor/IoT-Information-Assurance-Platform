@@ -1,0 +1,247 @@
+digraph InformationFlow {
+    // Graph settings with orthogonal routing and grid layout
+    rankdir=BT;
+    nodesep=1.5;
+    ranksep=2.0;
+    bgcolor="#ffffff";
+    fontname="Arial";
+    splines=ortho;
+    pad=0.5;
+    
+    // Define global node and edge styles
+    node [shape=box, style="filled,rounded", fontname="Arial", fontsize=13, penwidth=2];
+    edge [fontname="Arial", fontsize=11, penwidth=2.5];
+    
+    // Level 1: Technology Layer - Sensors and Network
+    subgraph cluster_level1 {
+        label="LEVEL 1: TECHNOLOGY LAYER";
+        labeljust=c;
+        style="filled,rounded";
+        fillcolor="#e3f2fd";
+        fontsize=16;
+        fontcolor="#1565c0";
+        penwidth=2;
+        margin=25;
+        
+        // Force horizontal alignment
+        {
+            rank=same;
+            // Sensors with consistent sizing
+            S1 [label="S1\nBreathing\nFrequency\nSensor", 
+                fillcolor="#2196f3", 
+                fontcolor="white", 
+                shape=cylinder, 
+                width=2.0,
+                height=1.2];
+                
+            S2 [label="S2\nEnd-expiratory\nPressure\nSensor", 
+                fillcolor="#2196f3", 
+                fontcolor="white", 
+                shape=cylinder, 
+                width=2.0,
+                height=1.2];
+                
+            S3 [label="S3\nPhysician\nLogin\nSensor", 
+                fillcolor="#2196f3", 
+                fontcolor="white", 
+                shape=cylinder, 
+                width=2.0,
+                height=1.2];
+            
+            // Network component
+            Networks [label="Network\nInfrastructure", 
+                     fillcolor="#90caf9", 
+                     shape=box3d, 
+                     width=2.0,
+                     height=1.2];
+        }
+    }
+    
+    // Information Item Gateway (IIG)
+    IIG [label="Information Item Gateway (IIG)\nData Aggregation & Protocol Translation", 
+         fillcolor="#3f51b5", 
+         fontcolor="white", 
+         shape=box3d, 
+         width=7.5, 
+         height=1.0,
+         style="filled,bold",
+         penwidth=3];
+    
+    // Level 2: Service Layer
+    subgraph cluster_level2 {
+        label="LEVEL 2: SERVICE LAYER";
+        labeljust=c;
+        style="filled,rounded";
+        fillcolor="#ede7f6";
+        fontsize=16;
+        fontcolor="#6a1b9a";
+        penwidth=2;
+        margin=25;
+        
+        {
+            rank=same;
+            Service1 [label="Breath Synchronization\nService\n(Mandatory/Spontaneous)", 
+                     fillcolor="#9c27b0", 
+                     fontcolor="white",
+                     width=3.0,
+                     height=1.2];
+                     
+            Service2 [label="Pressure Measurement\nService", 
+                     fillcolor="#9c27b0", 
+                     fontcolor="white",
+                     width=3.0,
+                     height=1.2];
+                     
+            Service3 [label="Authentication\nService\n(Physician Login)", 
+                     fillcolor="#9c27b0", 
+                     fontcolor="white",
+                     width=3.0,
+                     height=1.2];
+        }
+    }
+    
+    // Services Gateway
+    ServicesGateway [label="Services Gateway\nService Orchestration & Routing", 
+                     fillcolor="#7b1fa2", 
+                     fontcolor="white", 
+                     shape=box3d, 
+                     width=7.5, 
+                     height=1.0,
+                     style="filled,bold",
+                     penwidth=3];
+    
+    // Level 3: Application Layer
+    subgraph cluster_level3 {
+        label="LEVEL 3: APPLICATION LAYER";
+        labeljust=c;
+        style="filled,rounded";
+        fillcolor="#fff3e0";
+        fontsize=16;
+        fontcolor="#e65100";
+        penwidth=2;
+        margin=25;
+        
+        {
+            rank=same;
+            PCSIMV [label="PC-SIMV Controller\n(Pressure Control-Synchronized\nIntermittent Mandatory Ventilation)", 
+                    fillcolor="#ff6f00", 
+                    fontcolor="white", 
+                    width=4.0,
+                    height=1.2];
+                    
+            VentilatorUnit [label="Ventilator\nUnit\n(Hardware)", 
+                           fillcolor="#ffa726", 
+                           shape=house, 
+                           width=2.0,
+                           height=1.2];
+        }
+    }
+    
+    // Define edges with labels positioned appropriately
+    // Sensor connections to IIG
+    S1 -> IIG [color="#1976d2", arrowsize=1.3, xlabel="Proprietary\nProtocol", fontcolor="#1976d2"];
+    S2 -> IIG [color="#1976d2", arrowsize=1.3, xlabel="Proprietary\nProtocol", fontcolor="#1976d2"];
+    S3 -> IIG [color="#1976d2", arrowsize=1.3, xlabel="Proprietary\nProtocol", fontcolor="#1976d2"];
+    Networks -> IIG [style="dashed,bold", color="#64b5f6", arrowsize=1.3, penwidth=2];
+    
+    // IIG to Services connections
+    IIG -> Service1 [color="#5e35b1", arrowsize=1.3, xlabel="S1+S2 Data", fontcolor="#5e35b1", fontsize=12];
+    IIG -> Service2 [color="#5e35b1", arrowsize=1.3, xlabel="S1+S2 Data", fontcolor="#5e35b1", fontsize=12];
+    IIG -> Service3 [color="#5e35b1", arrowsize=1.3, xlabel="S3 Data", fontcolor="#5e35b1", fontsize=12];
+    
+    // Services to Gateway connections
+    Service1 -> ServicesGateway [color="#8e24aa", arrowsize=1.3];
+    Service2 -> ServicesGateway [color="#8e24aa", arrowsize=1.3];
+    Service3 -> ServicesGateway [color="#8e24aa", arrowsize=1.3, xlabel="Auth Token", fontcolor="#8e24aa"];
+    
+    // Gateway to Application connections
+    ServicesGateway -> PCSIMV [color="#6a1b9a", arrowsize=1.3, xlabel="S1+S2+S3\nData", fontcolor="#6a1b9a", fontsize=12];
+    
+    // Application level connections
+    PCSIMV -> VentilatorUnit [color="#ef6c00", penwidth=4, style=bold, arrowsize=1.5, 
+                              xlabel="Breathing Assist\nCommands", fontcolor="#ef6c00", fontsize=12];
+    PCSIMV -> ServicesGateway [color="#f57c00", penwidth=3, dir=back, arrowsize=1.3, 
+                                xlabel="Login Auth\nRequest", fontcolor="#f57c00", fontsize=12];
+    
+    // Enhanced Legend
+    subgraph cluster_legend {
+        label="System Information & Data Flow";
+        labeljust=c;
+        style="filled,rounded";
+        fillcolor="#fafafa";
+        fontsize=15;
+        margin=20;
+        penwidth=2;
+        
+        node [shape=plaintext, fillcolor="transparent", fontsize=12];
+        legend [label=<
+            <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="10" BGCOLOR="white">
+                <TR>
+                    <TD BGCOLOR="#e3f2fd" COLSPAN="2"><B><FONT POINT-SIZE="14">Component Descriptions</FONT></B></TD>
+                </TR>
+                <TR>
+                    <TD ALIGN="LEFT" WIDTH="80"><B>S1</B></TD>
+                    <TD ALIGN="LEFT">Breathing frequency sensor - Monitors respiratory rate</TD>
+                </TR>
+                <TR>
+                    <TD ALIGN="LEFT"><B>S2</B></TD>
+                    <TD ALIGN="LEFT">End-expiratory pressure sensor - Measures PEEP levels</TD>
+                </TR>
+                <TR>
+                    <TD ALIGN="LEFT"><B>S3</B></TD>
+                    <TD ALIGN="LEFT">Physician login sensor - Authentication interface</TD>
+                </TR>
+                <TR>
+                    <TD ALIGN="LEFT"><B>IIG</B></TD>
+                    <TD ALIGN="LEFT">Information Item Gateway - Protocol translation layer</TD>
+                </TR>
+                <TR>
+                    <TD ALIGN="LEFT"><B>PC-SIMV</B></TD>
+                    <TD ALIGN="LEFT">Pressure Control ventilation mode controller</TD>
+                </TR>
+                <TR>
+                    <TD BGCOLOR="#ede7f6" COLSPAN="2"><B><FONT POINT-SIZE="14">Service Layer Components</FONT></B></TD>
+                </TR>
+                <TR>
+                    <TD ALIGN="LEFT" COLSPAN="2">• Breath Synchronization - Coordinates mandatory/spontaneous breathing</TD>
+                </TR>
+                <TR>
+                    <TD ALIGN="LEFT" COLSPAN="2">• Pressure Measurement - Monitors and validates pressure levels</TD>
+                </TR>
+                <TR>
+                    <TD ALIGN="LEFT" COLSPAN="2">• Authentication Service - Validates physician credentials</TD>
+                </TR>
+                <TR>
+                    <TD BGCOLOR="#fff3e0" COLSPAN="2"><B><FONT POINT-SIZE="14">Data Flow Patterns</FONT></B></TD>
+                </TR>
+                <TR>
+                    <TD ALIGN="LEFT"><B>S1+S2</B></TD>
+                    <TD ALIGN="LEFT">Combined breathing and pressure data for synchronization</TD>
+                </TR>
+                <TR>
+                    <TD ALIGN="LEFT"><B>S3</B></TD>
+                    <TD ALIGN="LEFT">Authentication credentials for physician login</TD>
+                </TR>
+                <TR>
+                    <TD ALIGN="LEFT"><B>S1+S2+S3</B></TD>
+                    <TD ALIGN="LEFT">Full sensor suite data with authentication</TD>
+                </TR>
+                <TR>
+                    <TD BGCOLOR="#f3e5f5" COLSPAN="2"><B><FONT POINT-SIZE="14">Communication Types</FONT></B></TD>
+                </TR>
+                <TR>
+                    <TD ALIGN="LEFT"><FONT COLOR="#1976d2">━━━</FONT></TD>
+                    <TD ALIGN="LEFT">Sensor data streams (real-time)</TD>
+                </TR>
+                <TR>
+                    <TD ALIGN="LEFT"><FONT COLOR="#64b5f6">┅┅┅</FONT></TD>
+                    <TD ALIGN="LEFT">Network infrastructure connection</TD>
+                </TR>
+                <TR>
+                    <TD ALIGN="LEFT"><FONT COLOR="#ef6c00">━━━</FONT></TD>
+                    <TD ALIGN="LEFT">Control commands (critical path)</TD>
+                </TR>
+            </TABLE>
+        >];
+    }
+}

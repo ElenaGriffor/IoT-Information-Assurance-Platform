@@ -1,0 +1,269 @@
+.empty-quadrants {
+  min-height: 100vh;
+  background: #f5f7fa;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.header-bar {
+  background: white;
+  padding: 20px 30px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.header-bar h2 {
+  color: #333;
+  margin: 0;
+  font-size: 1.8em;
+  font-weight: 500;
+}
+
+.back-btn {
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.back-btn:hover {
+  background: #5a6fd8;
+}
+
+.quadrants-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 20px;
+  padding: 30px;
+  height: calc(100vh - 200px);
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.empty-quadrant {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 2px solid #f0f0f0;
+}
+
+.empty-quadrant:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  border-color: #667eea;
+}
+
+.quadrant-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.quadrant-header h3 {
+  margin: 0;
+  font-size: 1.3em;
+  font-weight: 500;
+}
+
+.status {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 4px 12px;
+  border-radius: 15px;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.quadrant-content {
+  padding: 30px;
+  height: calc(100% - 80px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.placeholder-content {
+  text-align: center;
+  width: 100%;
+}
+
+.icon {
+  font-size: 3em;
+  margin-bottom: 15px;
+  display: block;
+}
+
+.placeholder-content h4 {
+  color: #333;
+  margin-bottom: 15px;
+  font-size: 1.4em;
+  font-weight: 500;
+}
+
+.placeholder-content p {
+  color: #666;
+  margin-bottom: 15px;
+  line-height: 1.5;
+}
+
+.placeholder-content ul {
+  text-align: left;
+  margin: 15px 0;
+  padding-left: 20px;
+  max-height: 100px;
+  overflow-y: auto;
+}
+
+.placeholder-content li {
+  color: #555;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+.info-items-preview {
+  text-align: left;
+  background: #f9f9f9;
+  border-radius: 8px;
+  padding: 15px;
+  margin: 15px 0;
+  max-height: 120px;
+  overflow-y: auto;
+}
+
+.subsystem-items {
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.subsystem-items strong {
+  color: #333;
+  display: block;
+  margin-bottom: 3px;
+}
+
+.subsystem-items span {
+  color: #666;
+  font-size: 13px;
+}
+
+.config-btn {
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+  margin-top: 15px;
+}
+
+.config-btn:hover {
+  background: #5a6fd8;
+}
+
+.system-summary {
+  background: white;
+  margin: 0 30px 30px 30px;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  max-width: 1340px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 30px;
+}
+
+.system-summary h3 {
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 1.3em;
+  font-weight: 500;
+  text-align: center;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  border-left: 4px solid #667eea;
+}
+
+.summary-item strong {
+  color: #333;
+  font-weight: 500;
+}
+
+.summary-item span {
+  color: #667eea;
+  font-weight: 600;
+}
+
+@media (max-width: 1200px) {
+  .quadrants-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, auto);
+    height: auto;
+  }
+  
+  .empty-quadrant {
+    min-height: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-bar {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+  
+  .header-bar h2 {
+    font-size: 1.4em;
+  }
+  
+  .quadrants-container {
+    padding: 20px;
+    gap: 15px;
+  }
+  
+  .system-summary {
+    margin: 0 20px 20px 20px;
+    padding: 20px;
+  }
+  
+  .summary-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .quadrant-header {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+  
+  .quadrant-content {
+    padding: 20px;
+  }
+} 

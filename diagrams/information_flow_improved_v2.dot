@@ -1,0 +1,155 @@
+digraph InformationFlow {
+    // Graph settings with orthogonal routing
+    rankdir=BT;
+    nodesep=1.2;
+    ranksep=1.5;
+    bgcolor="#f9f9f9";
+    fontname="Arial";
+    splines=ortho;  // This enables orthogonal routing (straight lines with 90-degree turns)
+    
+    // Define node styles
+    node [shape=box, style="filled,rounded", fontname="Arial", fontsize=12];
+    edge [fontname="Arial", fontsize=10];
+    
+    // Subgraph for Level 1 - Technologies
+    subgraph cluster_level1 {
+        label="Level 1: Technologies";
+        labeljust=r;
+        style="filled,rounded";
+        fillcolor="#e8f4fd";
+        fontsize=14;
+        fontcolor="#2c5282";
+        margin=20;
+        
+        // Create invisible nodes for alignment
+        {
+            rank=same;
+            // Sensors
+            S1 [label="S1\nBreathing\nFrequency", fillcolor="#4299e1", fontcolor="white", shape=cylinder, width=1.5];
+            S2 [label="S2\nEnd-expiratory\nPressure", fillcolor="#4299e1", fontcolor="white", shape=cylinder, width=1.5];
+            S3 [label="S3\nPhysician\nLogin", fillcolor="#4299e1", fontcolor="white", shape=cylinder, width=1.5];
+            
+            // Network
+            Networks [label="Networks", fillcolor="#bee3f8", shape=box3d, width=1.5];
+        }
+    }
+    
+    // Information Item Gateway
+    IIG [label="Information Item Gateway (IIG)", 
+         fillcolor="#5a67d8", 
+         fontcolor="white", 
+         shape=box3d, 
+         width=6, 
+         height=0.8,
+         style="filled,bold"];
+    
+    // Subgraph for Level 2 - Services
+    subgraph cluster_level2 {
+        label="Level 2: Services";
+        labeljust=r;
+        style="filled,rounded";
+        fillcolor="#f0e6ff";
+        fontsize=14;
+        fontcolor="#553c9a";
+        margin=20;
+        
+        {
+            rank=same;
+            Service1 [label="Mandatory/spontaneous\nBreath synchronization", fillcolor="#9f7aea", width=2.5];
+            Service2 [label="Measure pressure", fillcolor="#9f7aea", width=2.5];
+        }
+    }
+    
+    // Services Gateway
+    ServicesGateway [label="Services Gateway", 
+                     fillcolor="#805ad5", 
+                     fontcolor="white", 
+                     shape=box3d, 
+                     width=6, 
+                     height=0.8,
+                     style="filled,bold"];
+    
+    // Subgraph for Level 3 - Application
+    subgraph cluster_level3 {
+        label="Level 3: Application";
+        labeljust=r;
+        style="filled,rounded";
+        fillcolor="#fef5e7";
+        fontsize=14;
+        fontcolor="#c05621";
+        margin=20;
+        
+        {
+            rank=same;
+            PCSIMV [label="PC-SIMV\n(Pressure Control-Synchronized\nIntermittent Mandatory Ventilation)", fillcolor="#ed8936", fontcolor="white", width=3];
+            VentilatorUnit [label="Ventilator\nUnit", fillcolor="#f6ad55", shape=house, width=1.5];
+        }
+    }
+    
+    // Connections from sensors to IIG with orthogonal routing
+    S1 -> IIG [xlabel="Proprietary\nprotocol", color="#2d3748", penwidth=2, arrowsize=1.2];
+    S2 -> IIG [xlabel="Proprietary\nprotocol", color="#2d3748", penwidth=2, arrowsize=1.2];
+    S3 -> IIG [xlabel="Proprietary\nprotocol", color="#2d3748", penwidth=2, arrowsize=1.2];
+    Networks -> IIG [style=dashed, color="#718096", arrowsize=1.2];
+    
+    // Connections from IIG to Services
+    IIG -> Service1 [xlabel="S1-S2", color="#5a67d8", penwidth=2.5, arrowsize=1.2, fontsize=11, fontcolor="#5a67d8"];
+    IIG -> Service2 [xlabel="S1-S2", color="#5a67d8", penwidth=2.5, arrowsize=1.2, fontsize=11, fontcolor="#5a67d8"];
+    
+    // Connections to Services Gateway
+    Service1 -> ServicesGateway [color="#9f7aea", penwidth=2.5, arrowsize=1.2];
+    Service2 -> ServicesGateway [color="#9f7aea", penwidth=2.5, arrowsize=1.2];
+    
+    // Connections from Services Gateway to Application
+    ServicesGateway -> PCSIMV [xlabel="S1-S3", color="#805ad5", penwidth=2.5, arrowsize=1.2, fontsize=11, fontcolor="#805ad5"];
+    
+    // Application level connections
+    PCSIMV -> VentilatorUnit [xlabel="Breathing assist\nmessage", color="#ed8936", penwidth=3, style=bold, arrowsize=1.3];
+    PCSIMV -> ServicesGateway [xlabel="Login\nauthentication", color="#ed8936", penwidth=2, dir=back, arrowsize=1.2];
+    
+    // Legend with improved formatting
+    subgraph cluster_legend {
+        label="Legend & Information Flow";
+        labeljust=l;
+        style="filled,rounded";
+        fillcolor="#ffffff";
+        fontsize=13;
+        margin=15;
+        
+        node [shape=plaintext, fillcolor="transparent"];
+        legend [label=<
+            <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="8">
+                <TR>
+                    <TD BGCOLOR="#e3f2fd" COLSPAN="2"><B>Component Descriptions</B></TD>
+                </TR>
+                <TR>
+                    <TD ALIGN="LEFT"><B>S1</B></TD>
+                    <TD ALIGN="LEFT">Breathing frequency sensor</TD>
+                </TR>
+                <TR>
+                    <TD ALIGN="LEFT"><B>S2</B></TD>
+                    <TD ALIGN="LEFT">End-expiratory pressure sensor</TD>
+                </TR>
+                <TR>
+                    <TD ALIGN="LEFT"><B>S3</B></TD>
+                    <TD ALIGN="LEFT">Physician login sensor</TD>
+                </TR>
+                <TR>
+                    <TD ALIGN="LEFT"><B>IIG</B></TD>
+                    <TD ALIGN="LEFT">Information Item Gateway</TD>
+                </TR>
+                <TR>
+                    <TD BGCOLOR="#ede7f6" COLSPAN="2"><B>Data Flow Indicators</B></TD>
+                </TR>
+                <TR>
+                    <TD ALIGN="LEFT"><B>S1-S2</B></TD>
+                    <TD ALIGN="LEFT">Combined sensor data (breathing + pressure)</TD>
+                </TR>
+                <TR>
+                    <TD ALIGN="LEFT"><B>S1-S3</B></TD>
+                    <TD ALIGN="LEFT">All sensor data (breathing + login)</TD>
+                </TR>
+            </TABLE>
+        >];
+    }
+}

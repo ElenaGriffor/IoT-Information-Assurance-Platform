@@ -1,0 +1,10 @@
+TODO Checkpoints:
+
+1. Add Multiple Systems Feature:
+   -> Create a dropdown menu for multiple systems (ventilator_OEM1, ventilator_OEM2)
+   -> Each system will have its own JSON data file
+   -> Implement ability to:
+      - Load different ventilator configurations
+      - Reset current configuration
+      - Switch between different ventilator systems
+      - Save state for each system independently 

@@ -1,0 +1,18 @@
+Characteristic,Requirement,Information State,Measure Type,Gap Identified,Coverage
+Confidentiality,Implement AES-256 encryption for all patient data,processing,technology,No,Limited
+Confidentiality,Deploy secure boot with firmware signature verification,processing,technology,No,Limited
+Integrity,Implement real-time parameter validation,processing,technology,No,Good
+Integrity,Deploy secure boot with firmware signature verification,processing,technology,No,Good
+Integrity,Perform automated calibration checks every 24 hours,processing,technology,No,Good
+Integrity,Use blockchain for immutable calibration logging,storage,technology,No,Good
+Integrity,Maintain tamper-proof audit logs for 7 years,storage,technology,No,Good
+Availability,Achieve 99.999% uptime (less than 5.26 minutes downtime/year),processing,technology,No,Good
+Availability,Implement N+1 redundancy for all critical components,processing,technology,No,Good
+Availability,Provide 8-hour battery backup minimum,processing,technology,No,Good
+Availability,Enable emergency ventilation mode within 2 seconds,processing,technology,No,Good
+Availability,Enable emergency override with dual authentication,processing,technology,No,Good
+Human/Trust,Implement intuitive UI with <3 clicks to any function,processing,technology,No,Good
+Human/Trust,Reduce false positive alarms by minimum 70%,processing,technology,No,Good
+Human/Trust,Provide built-in training mode with certification tracking,processing,training,No,Good
+Authentication,Implement two-factor authentication for all users,processing,technology,No,Limited
+Authentication,Enable emergency override with dual authentication,processing,technology,No,Limited

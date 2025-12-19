@@ -1,0 +1,72 @@
+{
+  "0,0,0": {
+    "coordinate_id": "0,0,0",
+    "characteristic": "Confidentiality",
+    "info_state": "processing",
+    "measure_type": "technology",
+    "description": "Confidentiality - processing - technology",
+    "requirement": "Deploy secure boot with firmware signature verification",
+    "source": "Synthetic_Ventilator_Model_1X_Spec.pdf",
+    "value": 1
+  },
+  "1,0,0": {
+    "coordinate_id": "1,0,0",
+    "characteristic": "Integrity",
+    "info_state": "processing",
+    "measure_type": "technology",
+    "description": "Integrity - processing - technology",
+    "requirement": "Perform automated calibration checks every 24 hours",
+    "source": "Synthetic_Ventilator_Model_1X_Spec.pdf",
+    "value": 1
+  },
+  "1,1,0": {
+    "coordinate_id": "1,1,0",
+    "characteristic": "Integrity",
+    "info_state": "storage",
+    "measure_type": "technology",
+    "description": "Integrity - storage - technology",
+    "requirement": "Maintain tamper-proof audit logs for 7 years",
+    "source": "Synthetic_Ventilator_Model_1X_Spec.pdf",
+    "value": 1
+  },
+  "2,0,0": {
+    "coordinate_id": "2,0,0",
+    "characteristic": "Availability",
+    "info_state": "processing",
+    "measure_type": "technology",
+    "description": "Availability - processing - technology",
+    "requirement": "Enable emergency override with dual authentication",
+    "source": "Synthetic_Ventilator_Model_1X_Spec.pdf",
+    "value": 1
+  },
+  "3,0,0": {
+    "coordinate_id": "3,0,0",
+    "characteristic": "Human/Trust",
+    "info_state": "processing",
+    "measure_type": "technology",
+    "description": "Human/Trust - processing - technology",
+    "requirement": "Reduce false positive alarms by minimum 70%",
+    "source": "Synthetic_Ventilator_Model_1X_Spec.pdf",
+    "value": 1
+  },
+  "3,0,2": {
+    "coordinate_id": "3,0,2",
+    "characteristic": "Human/Trust",
+    "info_state": "processing",
+    "measure_type": "training",
+    "description": "Human/Trust - processing - training",
+    "requirement": "Provide built-in training mode with certification tracking",
+    "source": "Synthetic_Ventilator_Model_1X_Spec.pdf",
+    "value": 1
+  },
+  "4,0,0": {
+    "coordinate_id": "4,0,0",
+    "characteristic": "Authentication",
+    "info_state": "processing",
+    "measure_type": "technology",
+    "description": "Authentication - processing - technology",
+    "requirement": "Enable emergency override with dual authentication",
+    "source": "Synthetic_Ventilator_Model_1X_Spec.pdf",
+    "value": 1
+  }
+}

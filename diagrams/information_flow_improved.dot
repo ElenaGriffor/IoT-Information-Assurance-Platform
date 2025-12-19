@@ -1,0 +1,59 @@
+digraph InformationFlow {
+	bgcolor="#f9f9f9" fontname=Arial nodesep=0.8 rankdir=BT ranksep=1.2
+	node [fontname=Arial fontsize=12 shape=box style="filled,rounded"]
+	edge [fontname=Arial fontsize=10]
+	subgraph cluster_level1 {
+		fillcolor="#e8f4fd" fontcolor="#2c5282" fontsize=14 label="Level 1: Technologies" labeljust=r style="filled,rounded"
+		S1 [label="S1
+Breathing
+Frequency" fillcolor="#4299e1" fontcolor=white shape=cylinder]
+		S2 [label="S2
+End-expiratory
+Pressure" fillcolor="#4299e1" fontcolor=white shape=cylinder]
+		S3 [label="S3
+Physician
+Login" fillcolor="#4299e1" fontcolor=white shape=cylinder]
+		Networks [label=Networks fillcolor="#bee3f8" shape=box3d]
+	}
+	IIG [label="Information Item Gateway (IIG)" fillcolor="#5a67d8" fontcolor=white height=0.8 shape=box3d style="filled,bold" width=5.5]
+	subgraph cluster_level2 {
+		fillcolor="#f0e6ff" fontcolor="#553c9a" fontsize=14 label="Level 2: Services" labeljust=r style="filled,rounded"
+		Service1 [label="Mandatory/spontaneous
+Breath synchronization" fillcolor="#9f7aea"]
+		Service2 [label="Measure pressure" fillcolor="#9f7aea"]
+	}
+	ServicesGateway [label="Services Gateway" fillcolor="#805ad5" fontcolor=white height=0.8 shape=box3d style="filled,bold" width=5.5]
+	subgraph cluster_level3 {
+		fillcolor="#fef5e7" fontcolor="#c05621" fontsize=14 label="Level 3: Application" labeljust=r style="filled,rounded"
+		PCSIMV [label="PC-SIMV" fillcolor="#ed8936" fontcolor=white]
+		VentilatorUnit [label="Ventilator
+Unit" fillcolor="#f6ad55" shape=house]
+	}
+	S1 -> IIG [label="Proprietary
+protocol" color="#2d3748" penwidth=2]
+	S2 -> IIG [label="Proprietary
+protocol" color="#2d3748" penwidth=2]
+	S3 -> IIG [label="Proprietary
+protocol" color="#2d3748" penwidth=2]
+	Networks -> IIG [color="#718096" style=dashed]
+	IIG -> Service1 [label="S1-S2" color="#5a67d8" penwidth=2]
+	IIG -> Service2 [label="S1-S2" color="#5a67d8" penwidth=2]
+	Service1 -> ServicesGateway [color="#9f7aea" penwidth=2]
+	Service2 -> ServicesGateway [color="#9f7aea" penwidth=2]
+	ServicesGateway -> PCSIMV [label="S1-S3" color="#805ad5" penwidth=2]
+	PCSIMV -> VentilatorUnit [label="Breathing assist
+message" color="#ed8936" penwidth=2 style=bold]
+	ServicesGateway -> PCSIMV [label="Login authentication" color="#ed8936" dir=back penwidth=2]
+	subgraph cluster_legend {
+		fillcolor="#ffffff" fontsize=12 label="Information Flow" labeljust=l style="filled,rounded"
+		legend [label=<
+        <TABLE BORDER="0" CELLBORDER="0" CELLSPACING="5">
+            <TR><TD ALIGN="LEFT"><B>S1:</B> Breathing frequency sensor</TD></TR>
+            <TR><TD ALIGN="LEFT"><B>S2:</B> End-expiratory pressure sensor</TD></TR>
+            <TR><TD ALIGN="LEFT"><B>S3:</B> Physician login sensor</TD></TR>
+            <TR><TD ALIGN="LEFT"><B>IIG:</B> Information Item Gateway</TD></TR>
+            <TR><TD ALIGN="LEFT"><B>PC-SIMV:</B> Pressure Control-Synchronized Intermittent Mandatory Ventilation</TD></TR>
+        </TABLE>
+    > fillcolor=transparent shape=plaintext]
+	}
+}
