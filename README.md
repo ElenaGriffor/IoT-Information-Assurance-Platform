@@ -5,7 +5,7 @@
 
 This platform represents a novel integration of **information assurance methodologies**, **IoT information flow modeling**, and **engineering best practices** specifically designed for critical medical IoT systems. The application demonstrates a unique approach to developing, visualizing, and analyzing information assurance characteristics across complex IoT device architectures, with a primary focus on medical ventilator systems.
 
-The platform embodies a systematic methodology for modeling information assurance properties across three fundamental dimensions: **subsystems/services**, **security characteristics**, and **information states**. This multi-dimensional approach enables comprehensive security analysis and gap identification in IoT systems where human lives depend on reliability, integrity, and availability.
+The platform embodies a systematic methodology for modeling information assurance properties across three fundamental dimensions: **measures**, **security characteristics**, and **information states**. This multi-dimensional approach enables comprehensive security analysis and gap identification in IoT systems where human lives depend on reliability, integrity, and availability.
 
 ---
 
